@@ -3,13 +3,13 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 const PORT = 9000;
-const queries = require('./queries');
+const queries = require('../database/queries.js');
 const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/lift', (req, res) => {
   res.send('get lift works!');
