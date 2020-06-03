@@ -6,6 +6,10 @@ const DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
   entry: [`${SRC_DIR}/index.js`],
+  watch: true,
+  watchOptions: {
+    poll: true
+  },
   output: {
     filename: 'bundle.js',
     path: DIST_DIR
