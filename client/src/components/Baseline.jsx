@@ -13,6 +13,7 @@ const Baseline = () => {
           <option value='lbs'>lbs</option>
           <option value='kgs'>kgs</option>
         </select>
+        <input type='text' id='baselineReps' placeholder='Input rep range'></input>
         <button type="submit" id='submitBaseline'>Set Baseline</button>
       </form>
       <BaselineDisplay />

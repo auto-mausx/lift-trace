@@ -11,22 +11,37 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/lift', (req, res) => {
-  res.send('get lift works!');
+app.get('/baselines', (req, res) => {
+  res.send('get baslines works!');
 });
 
-app.post('/lift', (req, res) => {
-  res.send('post a lift works!');
+app.get('/goals', (req, res) => {
+  res.send('get goals works!')
+})
+
+app.post('/baseline', (req, res) => {
+  res.send('post a baseline works!');
 });
 
-app.delete('/lift', (req, res) => {
-  res.send('delete a lift works!')
+app.post('/goal', (req, res) => {
+  res.send('post a goal works!');
 });
 
-app.put('/lift', (req, res) => {
-  res.send('update lift works!')
+app.delete('/baseline', (req, res) => {
+  res.send('delete a baseline works!')
 });
 
+app.delete('/goal', (req, res) => {
+  res.send('delete a goal works!')
+});
+
+app.put('/baseline', (req, res) => {
+  res.send('update baseline works!')
+});
+
+app.put('/baseline', (req, res) => {
+  res.send('update baseline works!')
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
