@@ -1,0 +1,19 @@
+DROP DATABASE IF EXISTS liftdata;
+
+CREATE DATABASE liftdata;
+
+USE liftdata;
+
+CREATE TABLE baselines (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  lift VARCHAR(255) NOT NULL,
+  weight VARCHAR(255) NOT NULL,
+  reps VARCHAR(255)
+);
+
+CREATE TABLE goals (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  lift VARCHAR(255) NOT NULL,
+  weight VARCHAR(255) NOT NULL,
+  reps VARCHAR(255)
+);
