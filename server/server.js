@@ -12,19 +12,43 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/baselines', (req, res) => {
-  res.send('get baslines works!');
+  queries.getAllBaselines((err, data) => {
+    if (err) {
+      res.status(500).send('could not get baselines from DB')
+    } else {
+      res.send(data);
+    }
+  })
 });
 
 app.get('/goals', (req, res) => {
-  res.send('get goals works!')
+  queries.getAllGoals((err, data) => {
+    if (err) {
+      res.status(500).send('could not get goals from DB')
+    } else {
+      res.send(data);
+    }
+  })
 })
 
 app.post('/baseline', (req, res) => {
-  res.send('post a baseline works!');
+  queries.setBaseline(req.body, (err, data) => {
+    if (err) {
+      res.status(500).send('could not post baseline in DB')
+    } else {
+      res.send(data)
+    }
+  })
 });
 
 app.post('/goal', (req, res) => {
-  res.send('post a goal works!');
+  queries.setGoal(req.body, (err, data) => {
+    if (err) {
+      res.status(500).send('could not post goal in DB')
+    } else {
+      res.send(data)
+    }
+  })
 });
 
 app.delete('/baseline', (req, res) => {
@@ -39,8 +63,8 @@ app.put('/baseline', (req, res) => {
   res.send('update baseline works!')
 });
 
-app.put('/baseline', (req, res) => {
-  res.send('update baseline works!')
+app.put('/goal', (req, res) => {
+  res.send('update goal works!')
 });
 
 app.listen(PORT, () => {
