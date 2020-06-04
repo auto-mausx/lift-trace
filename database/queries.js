@@ -4,8 +4,12 @@ const config = require('../server/serverConfig');
 const connection = mysql.createConnection(config);
 
 
-connection.connect(() => {
+connection.connect((err) => {
+  if (err) {
+    console.log(err)
+  } else {
   console.log("database connected!")
+  }
 })
 
 // gets all baselines from database
@@ -32,6 +36,8 @@ const getAllGoals = (callback) => {
 
 // adds baseline lift data to DB
 const setBaseline = (liftData, callback) => {
+  console.log(liftData)
+  console.log(liftData.lift, liftData.weight, liftData.reps)
   connection.query('INSERT INTO baselines (lift, weight, reps) VALUES (?, ?, ?)', [liftData.lift, liftData.weight, liftData.reps], (err, data) => {
     if (err) {
       callback(err, null)
@@ -52,9 +58,31 @@ const setGoal = (liftData, callback) => {
   })
 };
 
+const deleteBaseline = (data, callback) => {
+  connection.query('DELETE FROM baselines WHERE lift = (?)', [data], (err, data) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, data)
+    }
+  })
+};
+
+const deleteGoal = (data, callback) => {
+  connection.query('DELETE FROM goals WHERE lift = (?)', [data], (err, data) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, data)
+    }
+  })
+};
+
 module.exports = {
   getAllBaselines,
   getAllGoals,
   setBaseline,
-  setGoal
+  setGoal,
+  deleteBaseline,
+  deleteGoal
 }

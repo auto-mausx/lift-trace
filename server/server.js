@@ -32,7 +32,9 @@ app.get('/goals', (req, res) => {
 })
 
 app.post('/baseline', (req, res) => {
-  queries.setBaseline(req.body, (err, data) => {
+  const liftData = req.body.baseline;
+  console.log(liftData)
+  queries.setBaseline(liftData, (err, data) => {
     if (err) {
       res.status(500).send('could not post baseline in DB')
     } else {
@@ -42,7 +44,7 @@ app.post('/baseline', (req, res) => {
 });
 
 app.post('/goal', (req, res) => {
-  queries.setGoal(req.body, (err, data) => {
+  queries.setGoal(req.body.goal, (err, data) => {
     if (err) {
       res.status(500).send('could not post goal in DB')
     } else {
@@ -51,12 +53,26 @@ app.post('/goal', (req, res) => {
   })
 });
 
-app.delete('/baseline', (req, res) => {
-  res.send('delete a baseline works!')
+app.delete(`/baseline`, (req, res) => {
+  console.log(req.body)
+  queries.deleteBaseline(req.body.lift, (err, data) => {
+    if (err) {
+      res.status(500).send('could not delete from DB')
+    } else {
+      res.send(data)
+    }
+  })
 });
 
 app.delete('/goal', (req, res) => {
-  res.send('delete a goal works!')
+  console.log(req.body)
+  queries.deleteGoal(req.body.lift, (err, data) => {
+    if (err) {
+      res.status(500).send('could not delete from DB')
+    } else {
+      res.send(data)
+    }
+  })
 });
 
 app.put('/baseline', (req, res) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import GoalItem from './GoalItem';
 
 const GoalDisplay = (props) => {
   return (
@@ -7,9 +8,11 @@ const GoalDisplay = (props) => {
         Your Current goals:
       </span>
       <ul>
-        <li>Lift @ weight for X reps</li>
-        <li>Next Lift @ weight for X reps</li>
-        <li>Another Lift @ weight for X reps</li>
+      {props.goals.map(liftdata => {
+          return (
+            <GoalItem lift={liftdata.lift} weight={liftdata.weight} reps={liftdata.reps} onRemove={(e) => props.delete(e, liftdata.lift)}/>
+          )
+        })}
       </ul>
     </div>
   )

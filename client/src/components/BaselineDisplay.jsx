@@ -1,4 +1,5 @@
 import React from 'react';
+import BaselineItem from './BaselineItem';
 
 const BaselineDisplay = (props) => {
   return (
@@ -7,9 +8,11 @@ const BaselineDisplay = (props) => {
         Your Current Bests:
       </span>
       <ul>
-        <li>Lift @ weight for X reps</li>
-        <li>Next Lift @ weight for X reps</li>
-        <li>Another Lift @ weight for X reps</li>
+        {props.baselines.map(liftdata => {
+          return (
+            <BaselineItem lift={liftdata.lift} weight={liftdata.weight} reps={liftdata.reps} onRemove={(e) => props.delete(e, liftdata.lift)}/>
+          )
+        })}
       </ul>
     </div>
   )
