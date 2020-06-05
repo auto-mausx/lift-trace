@@ -3,6 +3,7 @@ import axios from 'axios';
 import Baseline from './Baseline.jsx';
 import Goal from './Goal';
 import NextDisplay from './NextDisplay';
+import { json } from 'body-parser';
 
 export default class App extends Component {
   constructor() {
@@ -10,12 +11,14 @@ export default class App extends Component {
     this.state = {
       baselines: [],
       goals: [],
-      nextGoal: ''
+      nextGoal: '',
     };
     this.setBaseline = this.setBaseline.bind(this);
     this.setGoal = this.setGoal.bind(this);
     this.deleteBaseline = this.deleteBaseline.bind(this);
     this.deleteGoal = this.deleteGoal.bind(this);
+    this.showNextGoal = this.showNextGoal.bind(this);
+    this.updateBaseline = this.updateBaseline.bind(this);
   }
   // gets both goals and baselines on page load
   componentDidMount() {
@@ -111,11 +114,61 @@ export default class App extends Component {
     })
   }
 
-  showNextGoal(lift, weight, reps) {
-    var parsedWeight = Number(weight);
-    var parsedReps   = Number(reps);
-    var goalString = `Your next goal for ${lift} is ${parsed + 5} or ${parsedReps + 2} reps at ${weight}`
-    this.setState({nextGoal: goalString}, console.log(this.state.nextGoal));
+  // handles displaying the next goal
+  showNextGoal(e, lift, weight, reps) {
+    // filters goal array to compare with current value of weight
+    var filteredGoalWeight = this.state.goals.filter(liftGoal => {
+      if (liftGoal.lift === lift) {
+        return liftGoal;
+      }
+    })
+
+    e.preventDefault();
+    // isolates the number and turns it into an actual number
+    var num        = parseInt(weight.replace(/[^0-9]/g,''));
+    // isolates the unit for later
+    var unit       = weight.replace(/[^a-z]/g,'');
+    var nextReps   = parseInt(reps) + 2;
+    var completedGoalString = `CONGRATS! You've reached your targeted goal of ${weight} for ${reps} reps on ${lift}! Time to set a new goal!`
+
+    // turns the goal object into a weight number
+    filteredGoalWeight = parseInt(filteredGoalWeight[0].weight.replace(/[^0-9]/g,''))
+
+    // if current weight is equal to the goal weight, show completed goal
+    if (num === filteredGoalWeight) {
+      this.setState({
+        nextGoal: completedGoalString,
+      }, () => {
+        this.getBaselines();
+      });
+
+      // else display next goal and update the database with that goal
+    } else {
+      num += 5;
+      var goalString = `Your next goal for ${lift} is ${num} or ${nextReps} reps at ${weight}`
+      this.setState({
+        nextGoal: goalString,
+      }, () => {
+        this.updateBaseline(lift, num, unit);
+        this.getBaselines();
+      })
+    }
+  }
+
+  // handles axios request for updating baselines
+  updateBaseline(lift, weight, unit) {
+    axios.put('/baseline', {
+      lift: lift,
+      weight: weight + ' ' + unit
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      if (err) {
+        console.log('could not update DB', err)
+      }
+    })
   }
 
 
@@ -124,11 +177,24 @@ export default class App extends Component {
       return null;
     }
     return(
-      <div>
-        <h1>{this.state.lift}</h1>
-        <Baseline setBaseline={this.setBaseline} baselines={this.state.baselines} delete={this.deleteBaseline}/>
-        <Goal setGoal={this.setGoal} goals={this.state.goals} delete={this.deleteGoal} />
-        <NextDisplay />
+      <div className='entireApp'>
+        <div className='gainsTrain'>Gains Train</div>
+        <Baseline
+        setBaseline={this.setBaseline}
+        baselines={this.state.baselines}
+        delete={this.deleteBaseline}
+        show={this.showNextGoal}
+        />
+
+        <Goal
+        setGoal={this.setGoal}
+        goals={this.state.goals}
+        delete={this.deleteGoal}
+        />
+
+        <NextDisplay
+        next={this.state.nextGoal}
+        />
       </div>
     )
   }

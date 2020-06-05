@@ -78,11 +78,23 @@ const deleteGoal = (data, callback) => {
   })
 };
 
+const updateBaseline = (liftData, callback) => {
+  console.log(liftData)
+  connection.query('UPDATE baselines SET weight=(?) WHERE lift=(?)', [liftData.weight, liftData.lift], (err, data) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      callback(null, data)
+    }
+  })
+};
+
 module.exports = {
   getAllBaselines,
   getAllGoals,
   setBaseline,
   setGoal,
   deleteBaseline,
-  deleteGoal
+  deleteGoal,
+  updateBaseline
 }

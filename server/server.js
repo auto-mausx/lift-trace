@@ -76,7 +76,14 @@ app.delete('/goal', (req, res) => {
 });
 
 app.put('/baseline', (req, res) => {
-  res.send('update baseline works!')
+  console.log(req.body)
+  queries.updateBaseline(req.body, (err, data) => {
+    if (err) {
+      res.status(500).send('could not post goal in DB')
+    } else {
+      res.send(data)
+    }
+  })
 });
 
 app.put('/goal', (req, res) => {
