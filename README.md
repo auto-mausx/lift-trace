@@ -15,29 +15,68 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+# Gains Train #
+ Gains Train is a simple and intuitive progressive overload tracker to track any lift and give you a goal to hit for every week. You can start by setting your baselines on your lifts, then set goals you want to get to. Every time you've improved your baseline, click on your baseline and it will give you next weeks goal and update your new baseline automatically!
 
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+ The complete functionality of this App in it's current state was completed in less than 48 hours, so going forward I will be adding features and redesigning it for moblie.
 
-## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+## In Action ##
+<!-- TODO: screen capture functionality and upload gif -->
+  ![Alt Text]()
 
-## Problem ##
-  > Describe the problem your product solves.
+# User Stories #
+  I'm accepting any feedback, but here are my current user stories
+## Implemented: ##
+- As a user, I want to set a baseline lift weight
+- As a user, I want to set goals
+- As a user, I want to select between weight units
+- As a user, I want to delete baselines
+- As a user, I want to delete goals
+- As a user, I want to see my next goal
+- As a user, I want a simple storage of my current best
 
-## Solution ##
-  > Describe how your product elegantly solves the problem.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+## Coming Soon: ##
+- As a user, I want to use this as a mobile app
+- As a user, I want to adjust my next goal weight
+- As a user, I want to adjust my next goal rep count
+- As a user, I want to edit my baselines
+- As a user, I want to edit my goals
+- As a user, I want to display my next goal without changing my current
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
+# Stack #
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
+
+
+
+## Front-End ##
+Most Styling was done in under 6 hours, I was more focused on function over styling in my short 48 hour timeframe to build this app.
+
+## Back-End ##
+This app has it's own dedicated mySQL server to store your goals and baselines.
+
+## Deployment ##
+Currently working on deployment
+
+# Coming Soon #
+This repo contains my first release. Here's what I'm working on:
+
+- Better, more modern styling
+- Mobile App version for Android/IOS
+- Account creation
+- Graphical chart of progress
+
+# Get started #
+
+Take the following steps to run the app in your localhost, you will need to have the following:
+- MySQL should be running on your machine
+
+Seed database schema in command line or your favorite GUI
+
+```
+npm install
+npm run server-dev
+npm run react-dev
+```
