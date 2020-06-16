@@ -15,8 +15,8 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
 
-# Gains Train #
- Gains Train is a simple and intuitive progressive overload tracker to track any lift and give you a goal to hit for every week. You can start by setting your baselines on your lifts, then set goals you want to get to. Every time you've improved your baseline, click on your baseline and it will give you next weeks goal and update your new baseline automatically!
+# Lift Trace #
+ Lift Trace is a simple and intuitive progressive overload tracker to track any lift and give you a goal to hit for every week. You can start by setting your baselines on your lifts, then set goals you want to get to. Every time you've improved your baseline, click on your baseline and it will give you next weeks goal and update your new baseline automatically!
 
  The complete functionality of this App in it's current state was completed in less than 48 hours, so going forward I will be adding features and redesigning it for moblie.
 
