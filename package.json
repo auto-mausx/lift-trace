@@ -1,11 +1,14 @@
 {
-  "name": "gains-train",
+  "name": "lift-trace",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/server.js"
+    "server-dev": "nodemon server/server.js",
+    "react-prod": "webpack -p",
+    "server-prod": "node server/server.js",
+    "production": "npm-run-all --parallel react-prod server-prod"
   },
   "author": "Kody Maus",
   "license": "ISC",
@@ -29,6 +32,7 @@
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "npm-run-all": "^4.1.5"
   }
 }

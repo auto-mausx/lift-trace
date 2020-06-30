@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const path = require('path');
-const PORT = 9000;
+const PORT = process.env.PORT || 9000;
 const queries = require('../database/queries.js');
 const bodyParser = require('body-parser');
 

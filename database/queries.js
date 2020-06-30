@@ -3,7 +3,7 @@ const config = require('../server/serverConfig');
 
 const connection = mysql.createConnection(config);
 
-
+// connection.connect();
 connection.connect((err) => {
   if (err) {
     console.log(err)
