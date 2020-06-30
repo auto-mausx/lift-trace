@@ -52,13 +52,26 @@ Once the project moves into development, the press release can be used as a touc
 
 
 ## Front-End ##
+- React.js
+- Axios
+- CSS
+
 Most Styling was done in under 6 hours, I was more focused on function over styling in my short 48 hour timeframe to build this app.
 
 ## Back-End ##
 This app has it's own dedicated mySQL server to store your goals and baselines.
 
+- mySQL
+- Express.js
+
 ## Deployment ##
 Currently working on deployment
+
+- Docker
+- Google Cloud Platform
+- Terraform
+
+Also ran a serverless version on AWS
 
 # Coming Soon #
 This repo contains my first release. Here's what I'm working on:
