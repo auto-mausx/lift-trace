@@ -22,7 +22,7 @@ Once the project moves into development, the press release can be used as a touc
 
 ## In Action ##
 <!-- TODO: screen capture functionality and upload gif -->
-  ![Alt Text]()
+  ![Alt Text](https://thumbs.gfycat.com/GlitteringEsteemedAmericanmarten-size_restricted.gif)
 
 # User Stories #
   I'm accepting any feedback, but here are my current user stories
