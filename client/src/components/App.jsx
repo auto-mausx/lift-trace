@@ -178,7 +178,7 @@ export default class App extends Component {
     // }
     return(
       <div className='entireApp'>
-        <div className='gainsTrain'>Lift Trace</div>
+        <div className='gainsTrain'>Lift Trace(jenkins test)</div>
         <Baseline
         setBaseline={this.setBaseline}
         baselines={this.state.baselines}
