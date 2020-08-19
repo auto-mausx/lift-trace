@@ -1,7 +1,7 @@
 provider "google" {
   project = "round-water-280322"
   region = "us-central1"
-  zone = "us-central-a"
+  zone = "us-central1-a"
 }
 
 # we want a resource of this f1-micro
@@ -12,13 +12,13 @@ provider "google" {
 # if you don't want to have those ports (80, 443) exposed comment out the tags
 
 resource "google_compute_instance" "vm_instance" {
-  name = "micro-ubuntu18"
+  name = "lift-trace"
   machine_type = "f1-micro"
 
-  tags = ["http-server", "https-server"]
+  tags = ["http-server"]
 
   labels = {
-    purpose = "lift trace"
+    purpose = "lift-trace"
   }
 
   boot_disk {
@@ -29,9 +29,28 @@ resource "google_compute_instance" "vm_instance" {
 
   network_interface {
     network = "default"
-
-    access_config{
-
-    }
   }
+}
+
+
+resource "google_sql_database_instance" "db" {
+  name = "db"
+  region = var.region
+  database_version = "MYSQL_5_7"
+   settings {
+    # Second-generation instance tiers are based on the machine
+    # type. See argument reference below.
+    tier = "db-f1-micro"
+  }
+}
+
+resource "google_sql_database" "liftdata" {
+  name = "liftdata"
+  instance = google_sql_database_instance.db.name
+}
+
+resource "google_sql_user" "root" {
+  name = "root"
+  instance = google_sql_database_instance.db.name
+  password = "admin"
 }
