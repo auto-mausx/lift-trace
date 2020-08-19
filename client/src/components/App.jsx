@@ -173,9 +173,9 @@ export default class App extends Component {
 
 
   render() {
-    if (this.state.baselines.length === 0 && this.state.goals.length === 0) {
-      return null;
-    }
+    // if (this.state.baselines.length === 0 && this.state.goals.length === 0) {
+    //   return null;
+    // }
     return(
       <div className='entireApp'>
         <div className='gainsTrain'>Lift Trace</div>
